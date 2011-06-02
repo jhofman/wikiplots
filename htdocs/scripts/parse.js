@@ -1,3 +1,5 @@
+// slick way to include data_frame.js from here?
+
 var selected_table = undefined;
 
 function find_tables() {
@@ -46,6 +48,18 @@ function parse_table(table) {
 	});
     });
 
-    console.log(table_headers);
-    console.log(table_data);
+    var df = new data_frame(table_data, table_headers);
+
+    console.log(df.slice(0,''));
+    console.log(df.slice('',0));
+    console.log(df.slice(1,1));
+    console.log(df.col('Population'));
+
+    df.add_col('foo', [0,1,2,3,4,5,6,7,8,9]);
+    df.add_row([1,2,3,4,5,6,7]);
+    df.del_row(0);
+    df.del_col('Population');
+
+    console.log(df);
+
 }
