@@ -18,7 +18,19 @@
 <style type="text/css" media="all">a.new,#quickbar a.new{color:#ba0000}
 
 /* cache key: enwiki:resourceloader:filter:minify-css:5:f2a9127573a22335c2a9102b208c73e7 */</style>
-<script type="text/javascript">wgNamespaceNumber=0;wgAction="view";wgPageName="World_population";wgMainPageTitle="Main Page";wgWikimediaMobileUrl="http:\/\/en.m.wikipedia.org\/wiki";</script><script src="http://bits.wikimedia.org/w/extensions-1.17/WikimediaMobile/MobileRedirect.js?8.2" type="text/javascript"></script><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.17/vector/csshover.min.htc")}</style><![endif]--></head>
+<script type="text/javascript">wgNamespaceNumber=0;wgAction="view";wgPageName="World_population";wgMainPageTitle="Main Page";wgWikimediaMobileUrl="http:\/\/en.m.wikipedia.org\/wiki";</script><script src="http://bits.wikimedia.org/w/extensions-1.17/WikimediaMobile/MobileRedirect.js?8.2" type="text/javascript"></script><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.17/vector/csshover.min.htc")}</style><![endif]-->
+
+<script type="text/javascript" src="../htdocs/scripts/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="../htdocs/scripts/parse.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var tables = find_tables();
+    wrap_tables(tables);
+  });
+</script>
+
+</head>
 <body class="mediawiki ltr ns-0 ns-subject page-World_population skin-vector">
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
