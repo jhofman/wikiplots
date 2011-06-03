@@ -33,6 +33,7 @@ function remote_add_console(df, div) {
 	console_html += '<br/>y-axis: <select class="y-axis">' + cols_html + '</select>';
         console_html += '<br/><img name="scatter" class="plot-button" src="http://wikiplots.org/images/scatter_button.png">';
         console_html += '<img name="line" class="plot-button" src="http://wikiplots.org/images/line_button.png">';
+        console_html += '<div id="wikiplot-title" style="width:400px;text-align:center;padding:10px;font-weight:bold;"></div>';
         console_html += '<div id="wikiplot" style="width:400px;height:300px"></div>';
 
 	$(div).html(console_html);
@@ -69,6 +70,8 @@ function select_table(table) {
 	plot = $("#wikiplot"); //panel.find('.plot-wrapper');
 	plot.show();
 	wikiplot(df, {x: x_axis, y: y_axis, geom: geom}, plot);
+
+	$("#wikiplot-title").html(x_axis + ' vs. ' + y_axis);
     })
 
 }
