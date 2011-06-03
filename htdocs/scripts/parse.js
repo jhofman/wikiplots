@@ -1,7 +1,5 @@
 // slick way to include data_frame.js from here?
 
-var selected_table = undefined;
-
 function find_tables() {
     return $('table:has(th)')
 }
@@ -12,7 +10,7 @@ function wrap_tables(tables) {
       var a = $('<a>').attr('title','Click to Wikiplot');
       $(a).click(function() {
         select_table(this);
-	parse_table(this);
+	//parse_table(this);
       });
       $(this).wrap(a);
 
@@ -28,7 +26,11 @@ function wrap_tables(tables) {
 }
 
 function select_table(table) {
-    selected_table = table;
+    var df = parse_table(table);
+    console.log(df);
+
+    $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
+
 }
 
 function parse_table(table) {
@@ -78,10 +80,6 @@ function parse_table(table) {
     $.each(df.col_names, function(j, col_name) {
 	console.log('\t' + col_name + ': ' + df.col_types[j]);//col_type(df.data[col_name]));
     });
-
-    console.log(df);
-
-    $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
 
     */
 
