@@ -1,0 +1,15 @@
+
+/* front page css */
+
+#urlbox {
+	width:388px; 
+	height:25px; 
+	font-size:15px;
+}
+
+#loading {
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+}
+

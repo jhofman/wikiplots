@@ -1,1 +1,8 @@
 plot the interwebs---s/tables/plots/g
+
+-- useful git commands --
+
+git add <filename>
+git commit -m "*use this field*" <filename>
+git commit -am "*use this field*"
+git push origin master
