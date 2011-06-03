@@ -31,12 +31,14 @@ function select_table(table) {
 
     $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
 
+    wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
 }
 
 function parse_table(table) {
     var table_data = {};
     var table_headers = [];
 
+  try {
     $.each($(table).find('tr:first th'), function() {
 	var header = $(this).text();
 
@@ -52,6 +54,11 @@ function parse_table(table) {
 
     var df = new data_frame(table_data, table_headers);
 
+    return df;
+
+  } catch (err) {
+    return false;
+  }
     /*
     console.log(df.slice(0,''));
     console.log(df.slice('',0));
@@ -82,8 +89,6 @@ function parse_table(table) {
     });
 
     */
-
-    return df;
     
 }
 
