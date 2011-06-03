@@ -39,6 +39,9 @@ function wikiplot(df, aes, placeholder) {
 	options['yaxis'] = {mode: 'time', timeformat: '%y/%m/%d %H:%M:%S'};
 
     $.plot($(placeholder), series, options);
+
+    if (type_x == 'text')
+	$(placeholder).find('.xAxis .tickLabel').addClass('diagonal');
 }
 
 
@@ -52,7 +55,7 @@ function to_points(df, col_name) {
     else { 
 	var points = col.map(function (x, i) {	    
 	    if (type == 'date' || type == 'time' || type == 'datetime')
-		return to_timestamp(x); //.format('u'); // fix this
+		return to_timestamp(x); //.format('u'); // seems to fail
 	    else
 		return i;
 	});

@@ -209,7 +209,7 @@ function to_time(x) {
 }
 
 function to_text(x) {
-    return x;
+    return $.trim(x.replace(/\s+/g,' '));
 }
 
 function is_type(x, f) {
