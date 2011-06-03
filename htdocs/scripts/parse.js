@@ -34,8 +34,8 @@ function select_table(table) {
     $(table).before('<div id="wikiplot" style="width:400px;height:300px"></div>');
 
     //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
-    //wikiplot(df, {x: df.col_names[1], y: df.col_names[4]}, $("#wikiplot"));
-    wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
+    wikiplot(df, {x: df.col_names[1], y: df.col_names[4]}, $("#wikiplot"));
+    //wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
 
 }
 

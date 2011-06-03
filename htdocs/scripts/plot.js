@@ -28,6 +28,16 @@ function wikiplot(df, aes, placeholder) {
     if (type_y == 'date')
 	options['yaxis'] = {mode: 'time', timeformat: '%y/%m/%d'};
 
+    if (type_x == 'time')
+	options['xaxis'] = {mode: 'time', timeformat: '%H:%M:%S'};
+    if (type_y == 'time')
+	options['yaxis'] = {mode: 'time', timeformat: '%H:%M:%S'};
+
+    if (type_x == 'datetime')
+	options['xaxis'] = {mode: 'time', timeformat: '%y/%m/%d %H:%M:%S'};
+    if (type_y == 'datetime')
+	options['yaxis'] = {mode: 'time', timeformat: '%y/%m/%d %H:%M:%S'};
+
     $.plot($(placeholder), series, options);
 }
 
@@ -53,16 +63,17 @@ function to_points(df, col_name) {
 }
 
 function to_timestamp(d) {
-    var year = d.toString('Y');
-    var month = d.toString('m');
+    var year = d.toString('yyyy');
+    var month = d.toString('M');
     var day = d.toString('d');
     var hour = d.toString('H');
-    var min = d.toString('i');
+    var min = d.toString('m');
     var sec = d.toString('s');
 
+    //console.log(year + ' ' + month + ' ' + day + ' ' + hour + ' ' + min + ' ' + sec);
     var d2 = new Date(year, month, day, hour, min, sec, 0);
 
-    return d2.UTC();
+    return d2.getTime();
 }
 
 function seq(n) {
