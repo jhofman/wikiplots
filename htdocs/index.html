@@ -7,8 +7,15 @@
 		<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css">
 		<!--[if lt IE 8]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css"><![endif]-->
 		<link rel="stylesheet" href="css/blueprint/plugins/fancy-type/screen.css" type="text/css">
+		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../excanvas.min.js"></script><![endif]-->
+		
 		<link rel="stylesheet" href="css/base.css" type="text/css">
 		<script src="scripts/jquery-1.6.1.min.js"></script>
+		<script src="scripts/date.js"></script>
+		<script src="scripts/data_frame.js"></script>
+		<script src="scripts/parse.js"></script>
+		<script src="scripts/jquery.flot.min.js"></script>
+		<script src="scripts/plot.js"></script>
 		<script src="scripts/frontpage.js"></script>
 	</head>
 
@@ -23,7 +30,8 @@
 			</form>
 		</div>
 		<hr class="space" style="height:50px">
-		<div id='tables' class="span-24 last"></div>
+		<div class='console span-12 append-12 last'></div>
+		<div id='panels' class="span-24 last"></div>
 	</div>
 	
 	</body>

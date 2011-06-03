@@ -13,3 +13,20 @@
 	font-size: 18px;
 }
 
+.plot-button {
+	cursor: pointer;
+}
+
+.plot-wrapper {
+	height: 300px;
+	width: 400px;
+	display: none;
+}
+
+.diagonal
+{
+  -o-transform:rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+/*   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); */
+}
