@@ -24,8 +24,7 @@ function wrap_tables(tables) {
     });
 }
 
-/*
-function add_console(df, div) {
+function remote_add_console(df, div) {
 	var cols_html = '';
 	$.each(df.col_names, function(index, col_name){
 		cols_html += '<option name="' + index + '">' + col_name + '</option>';
@@ -38,7 +37,6 @@ function add_console(df, div) {
 
 	$(div).html(console_html);
 }
-*/
 
 function select_table(table) {
     var df = parse_table(table);
@@ -56,7 +54,7 @@ function select_table(table) {
 
     $(table).before(panel_html);
 
-    add_console(df, $("#panel"));
+    remote_add_console(df, $("#panel"));
     //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
     //wikiplot(df, {x: df.col_names[1], y: df.col_names[4], geom: 'line'}, $("#wikiplot"));
     //wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
