@@ -33,24 +33,11 @@
   $(document).ready(function () {
     var tables = find_tables();
     wrap_tables(tables);
-
-    var d1 = [];
-    for (var i = 0; i < 14; i += 0.5)
-        d1.push([i, Math.sin(i)]);
-
-    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
-
-    // a null signifies separate line segments
-    var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-    
-    $.plot($("#placeholder"), [ d1, d2, d3 ]);
-
   });
 </script>
 
 </head>
 <body class="mediawiki ltr ns-0 ns-subject page-World_population skin-vector">
-    <div id="placeholder" style="width:600px;height:300px;"></div>
 
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
@@ -2121,7 +2108,7 @@ Wikipedia&reg; is a registered trademark of the <a href="http://www.wikimediafou
 		</div>
 		<!-- /footer -->
 		
-<script src="http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector" type="text/javascript"></script>
+<!-- <script src="http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector" type="text/javascript"></script> -->
 <script type="text/javascript">if ( window.mediaWiki ) {
 	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "World_population", "wgTitle": "World population", "wgAction": "view", "wgArticleId": 19017269, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 432080149, "wgCategories": ["All articles with dead external links", "Articles with dead external links from October 2010", "All articles with unsourced statements", "Articles with unsourced statements from January 2011", "Articles with unsourced statements from September 2010", "Articles with unsourced statements from February 2010", "Articles contradicting other articles", "All pages needing cleanup", "Wikipedia articles needing clarification from January 2011", "Articles to be expanded from July 2010", "All articles to be expanded", "Articles with inconsistent citation formats", "Demography", "Environmental science", "Population"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgSearchNamespaces": [0], "wgFlaggedRevsParams": {"tags": {"status": {"levels": 1, "quality": 2, "pristine": 3}}}, "wgStableRevisionId": null, "wgRevContents": {"error": "Unable to get content.", "waiting": "Waiting for content"}, "wgWikimediaMobileUrl": "http://en.m.wikipedia.org/wiki", "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "sectioneditlinks": false, "simplesearch": true, "experiments": true}, "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "templateEditor": false, "templates": false, "addMediaWizard": false, "preview": false, "previewDialog": false, "publish": false, "toc": false}, "wgTrackingToken": "aa0d127bcc19c7e1f9a5bcb8f1e18277", "Geo": {"city": "", "country": ""}, "wgNoticeProject": "wikipedia"});
 }
