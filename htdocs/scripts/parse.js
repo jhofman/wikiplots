@@ -24,18 +24,54 @@ function wrap_tables(tables) {
     });
 }
 
+/*
+function add_console(df, div) {
+	var cols_html = '';
+	$.each(df.col_names, function(index, col_name){
+		cols_html += '<option name="' + index + '">' + col_name + '</option>';
+	});
+	var console_html = 'x-axis: <select class="x-axis">' + cols_html + '</select>';
+	console_html += '<br/>y-axis: <select class="y-axis">' + cols_html + '</select>';
+        console_html += '<br/><img name="scatter" class="plot-button" src="http://wikiplots.org/images/scatter_button.png">';
+        console_html += '<img name="line" class="plot-button" src="http://wikiplots.org/images/line_button.png">';
+        console_html += '<div id="wikiplot" style="width:400px;height:300px"></div>';
+
+	$(div).html(console_html);
+}
+*/
+
 function select_table(table) {
     var df = parse_table(table);
     console.log(df);
     
     var table_id = $(table).find('table')[0].id;
-    $("#wikiplot").remove();
-    //if ($(table).next()[0].id != "wikiplot")
-    $(table).before('<div id="wikiplot" style="width:400px;height:300px"></div>');
+    $("#panel").remove();
 
+    var panel_html = "<div id='panel' class='wikiplot-panel span-24 last'>";
+    panel_html += "<div class='console span-8'>console</div>";
+    panel_html += "<div class='span-15 prepend-1 last'><div class='plot-wrapper'></div></div>";
+    panel_html += '<hr class="space" style="height:10px"">';
+    panel_html += "<div class='table_div span-24 last'></div>";
+    panel_html += "<hr class='space' style='height:50px'></div>";
+
+    $(table).before(panel_html);
+
+    add_console(df, $("#panel"));
     //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
-    wikiplot(df, {x: df.col_names[1], y: df.col_names[4], geom: 'line'}, $("#wikiplot"));
+    //wikiplot(df, {x: df.col_names[1], y: df.col_names[4], geom: 'line'}, $("#wikiplot"));
     //wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
+
+    // set up plotting buttons
+    $('.plot-button').click(function(){
+	var panel = $("#panel"); //$(this).parents('.wikiplot-panel');
+
+	var geom = $(this).attr('name');
+	var x_axis = df.col_names[panel.find('.x-axis option:selected').attr('name')];
+	var y_axis = df.col_names[panel.find('.y-axis option:selected').attr('name')];
+	plot = $("#wikiplot"); //panel.find('.plot-wrapper');
+	plot.show();
+	wikiplot(df, {x: x_axis, y: y_axis, geom: geom}, plot);
+    })
 
 }
 
