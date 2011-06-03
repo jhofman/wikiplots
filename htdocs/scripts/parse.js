@@ -50,6 +50,7 @@ function parse_table(table) {
 
     var df = new data_frame(table_data, table_headers);
 
+    /*
     console.log(df.slice(0,''));
     console.log(df.slice('',0));
     console.log(df.slice(1,1));
@@ -61,5 +62,42 @@ function parse_table(table) {
     df.del_col('Population');
 
     console.log(df);
+    */
 
+    var values = ['1,234', '1/10/11', '$10.00', '€10,000', '0.2%', '5,000%'];
+
+    $.each(values, function (i, vi) {
+	$.each(['is_number', 'is_currency', 'is_percentage'], function (j, fj) {
+	    console.log(fj + "(" + vi + "): " + window[fj](vi));
+	});
+    });
+}
+
+function is_number(x) {
+    return !isNaN(x.replace(',',''));
+}
+
+function is_currency(x) {
+    var signs = ["₳","฿","₵","¢","₡","₢","₠","$","₫","৳","₯","€","ƒ","₣","₲","₴","₭","ℳ","₥","₦","₧","₱","₰","£","₹","₨","₪","₸","₮","₩","¥","៛"];
+
+    var sign = x.substring(0,1);
+    var amount = x.substring(1,x.length);
+
+    if (signs.indexOf(sign) < 0)
+	return false;
+    else
+	if (is_number(amount))
+	    return true;
+        else
+	    return false;
+}
+
+function is_percentage(x) {
+    if (x.substring(x.length-1) != '%')
+	return false;
+    else
+	if (is_number(x.substring(0,x.length-1)))
+	    return true;
+        else
+	    return false;
 }
