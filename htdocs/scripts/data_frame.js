@@ -5,7 +5,11 @@ function data_frame(data, col_names) {
     this.col_types = [];
     this.dim = this.size();
 
-    
+    /*
+    $.each(col_names, function(j, col_name) {
+	this.col_types.push(this.col_type(col_name));
+    });
+    */
 }
 
 data_frame.prototype.size = function() {
@@ -18,6 +22,19 @@ data_frame.prototype.size = function() {
 data_frame.prototype.col = function(col_name) {
     return this.data[col_name];
 }
+
+/*
+data_frame.prototype.col_type = function(col_name) {
+    var type = array_type(this.data[col_name], ['datetime','percentage','currency','number']);
+    if (!type)
+	return 'text';
+
+    if (type == 'datetime')
+	type = array_type(this.data[col_name], ['time','date','datetime']);
+
+    return type;
+}
+*/
 
 data_frame.prototype.slice = function(i, j) {
     if (parseInt(i) == i && parseInt(j) == j)

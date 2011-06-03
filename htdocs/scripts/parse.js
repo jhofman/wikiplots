@@ -62,7 +62,6 @@ function parse_table(table) {
     df.del_col('Population');
 
     console.log(df);
-    */
 
     var values = ['3.14', '1,234', '1/10/11', 'May 21, 2011', '9:06 pm', '21:00', '$10.00', '€10,000', '0.2%', '5,000%'];
 
@@ -75,11 +74,53 @@ function parse_table(table) {
 	console.log(vi + ': ' + types.join(', '));
     });
 
+    */
+
+    console.log('column types:');
+    var types = ['datetime','percentage','currency','number'];
+    $.each(df.col_names, function(j, col_name) {
+	console.log('\t' + col_name + ': ' + col_type(df.data[col_name]));
+    });
+
 }
 
 
+function array_type(v, types) {
+    var type = false;
+
+    $.each(types, function (t, type_t) {
+	if (!type)
+	    type = type_t;
+
+	$.each(v, function (i, vi) {
+	    if (!window['is_' + type](vi)) {
+		type = false;
+		return false;
+	    }
+	});
+
+    });
+
+    if (!type)
+	return false;
+    else
+	return type;
+}
+
+function col_type(col) {
+    var type = array_type(col, ['datetime','percentage','currency','number']);
+
+    if (!type)
+	return 'text';
+    else
+	if (type == 'datetime')
+	    return array_type(col, ['time','date','datetime']);
+        else
+	    return type;
+}
+
 function to_number(x) {
-    var number = x.replace(',','');
+    var number = x.replace(/,/g,'');
 
     if (isNaN(number))
         return false;
