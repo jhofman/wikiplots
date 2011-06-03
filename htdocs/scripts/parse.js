@@ -79,12 +79,13 @@ function parse_table(table) {
 	console.log('\t' + col_name + ': ' + df.col_types[j]);//col_type(df.data[col_name]));
     });
 
-    */
-
     console.log(df);
 
     $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
-    
+
+    */
+
+    return df;
     
 }
 
