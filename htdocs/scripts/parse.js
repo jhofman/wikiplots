@@ -74,14 +74,18 @@ function parse_table(table) {
 	console.log(vi + ': ' + types.join(', '));
     });
 
-    */
-
     console.log('column types:');
-    var types = ['datetime','percentage','currency','number'];
     $.each(df.col_names, function(j, col_name) {
-	console.log('\t' + col_name + ': ' + col_type(df.data[col_name]));
+	console.log('\t' + col_name + ': ' + df.col_types[j]);//col_type(df.data[col_name]));
     });
 
+    */
+
+    console.log(df);
+
+    $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
+    
+    
 }
 
 
@@ -197,6 +201,10 @@ function to_time(x) {
     }
 }
 
+function to_text(x) {
+    return x;
+}
+
 function is_type(x, f) {
     var x = f(x);
 
@@ -212,3 +220,4 @@ function is_percentage(x) { return is_type(x, to_percentage); }
 function is_datetime(x) { return is_type(x, to_datetime); }
 function is_date(x) { return is_type(x, to_date); }
 function is_time(x) { return is_type(x, to_time); }
+function is_text(x) { return is_type(x, to_text); }
