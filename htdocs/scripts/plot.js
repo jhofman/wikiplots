@@ -13,9 +13,9 @@ function wikiplot(df, aes, placeholder) {
     //console.log(data);
 
     var series = [
-	{data: data, 
-	 points: {show: true}, 
-	 lines: {show: false}}];
+	{data: data,
+	 points: {show: true},
+	 lines: (aes['geom'] == 'line') ? {show: true} : {show: false}}];
 
     var options = {};
     if (type_x == 'text')
