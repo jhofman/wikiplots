@@ -8,7 +8,7 @@ function wikiplot(df, aes, placeholder) {
     for (var i=0; i<df.size()[0]; i++)
 	data.push([x[i],y[i]]);
 
-    $.plot($(placeholder), data);
+    $.plot($("#wikiplot"), [data]);
 }
 
 

@@ -112,3 +112,6 @@ data_frame.prototype.apply_col = function(col_name, f) {
     return true;
 }
 
+data_frame.prototype.transpose = function() {
+
+}

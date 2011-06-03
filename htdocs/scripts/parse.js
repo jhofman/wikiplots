@@ -10,7 +10,6 @@ function wrap_tables(tables) {
       var a = $('<a>').attr('title','Click to Wikiplot');
       $(a).click(function() {
         select_table(this);
-	//parse_table(this);
       });
       $(this).wrap(a);
 
