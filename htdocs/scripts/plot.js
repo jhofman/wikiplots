@@ -8,7 +8,9 @@ function wikiplot(df, aes, placeholder) {
 
     var data = zip(x,y);
     
-    console.log(data);
+    console.log(df.data[aes['x']]);
+    console.log(to_points(df, aes['x']));
+    //console.log(data);
 
     var series = [
 	{data: data, 
@@ -40,7 +42,7 @@ function to_points(df, col_name) {
     else { 
 	var points = col.map(function (x, i) {	    
 	    if (type == 'date' || type == 'time' || type == 'datetime')
-		return x.format('U'); // fix this
+		return x; //.format('u'); // fix this
 	    else
 		return i;
 	});
