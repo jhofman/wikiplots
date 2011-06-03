@@ -1,6 +1,3 @@
-function include(src) {
-}
-
 var scripts = ["jquery-1.6.1.min.js","jquery.flot.min.js","date.js","parse.js","data_frame.js","plot.js"];
 
 for (var i=0; i<scripts.length; i++) {

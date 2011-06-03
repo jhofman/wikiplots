@@ -25,18 +25,27 @@ function wrap_tables(tables) {
 }
 
 function remote_add_console(df, div) {
-	var cols_html = '';
-	$.each(df.col_names, function(index, col_name){
-		cols_html += '<option name="' + index + '">' + col_name + '</option>';
-	});
-	var console_html = 'x-axis: <select class="x-axis">' + cols_html + '</select>';
-	console_html += '<br/>y-axis: <select class="y-axis">' + cols_html + '</select>';
-        console_html += '<br/><img name="scatter" class="plot-button" src="http://wikiplots.org/images/scatter_button.png">';
-        console_html += '<img name="line" class="plot-button" src="http://wikiplots.org/images/line_button.png">';
-        console_html += '<div id="wikiplot-title" style="width:400px;text-align:center;padding:10px;font-weight:bold;"></div>';
-        console_html += '<div id="wikiplot" style="width:400px;height:300px"></div>';
+    var cols_html = '';
+    $.each(df.col_names, function(index, col_name){
+	cols_html += '<option name="' + index + '">' + col_name + '</option>';
+    });
+    var console_html = '<label for="x-axis">x-axis</label><select id="x-axis" class="x-axis">' + cols_html + '</select>';
+    console_html += '<label for="x-scale">x-scale</label><select id="x-scale" class="x-scale"></select>';
+    console_html += '<br/><label for="y-axis">y-axis</label><select id="y-axis" class="y-axis">' + cols_html + '</select>';
+    console_html += '<label for="y-scale">y-scale</label><select id="y-scale" class="y-scale"></select>';
+    console_html += '<br/><label for="hover">hover</label><select id="hover" class="hover"><option name=""></option>' + cols_html + '</select>';
+    console_html += '<br/><img name="scatter" class="plot-button" src="http://wikiplots.org/images/scatter_button.png">';
+    console_html += '<img name="line" class="plot-button" src="http://wikiplots.org/images/line_button.png">';
+    console_html += '<div id="wikiplot-title" style="width:400px;text-align:center;padding:10px;font-weight:bold;"></div>';
+    console_html += '<div id="wikiplot" style="width:400px;height:300px"></div>';
 
-	$(div).html(console_html);
+    $(div).html(console_html);
+
+    var scales = ['linear','log'];
+    $.each(scales, function (i, scale) {
+	$("#x-scale").append('<option name="' + scale + '">' + scale + '</option>');
+	$("#y-scale").append('<option name="' + scale + '">' + scale + '</option>');
+    });
 }
 
 function select_table(table) {
@@ -56,20 +65,20 @@ function select_table(table) {
     $(table).before(panel_html);
 
     remote_add_console(df, $("#panel"));
-    //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
-    //wikiplot(df, {x: df.col_names[1], y: df.col_names[4], geom: 'line'}, $("#wikiplot"));
-    //wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
 
-    // set up plotting buttons
     $('.plot-button').click(function(){
 	var panel = $("#panel"); //$(this).parents('.wikiplot-panel');
 
 	var geom = $(this).attr('name');
 	var x_axis = df.col_names[panel.find('.x-axis option:selected').attr('name')];
 	var y_axis = df.col_names[panel.find('.y-axis option:selected').attr('name')];
+	var x_scale = panel.find('.x-scale option:selected').attr('name');
+	var y_scale = panel.find('.y-scale option:selected').attr('name');
+	var hover = df.col_names[panel.find('.hover option:selected').attr('name')];
+
 	plot = $("#wikiplot"); //panel.find('.plot-wrapper');
 	plot.show();
-	wikiplot(df, {x: x_axis, y: y_axis, geom: geom}, plot);
+	wikiplot(df, {x: x_axis, y: y_axis, geom: geom, hover: hover, scale_x: x_scale, scale_y: y_scale}, plot);
 
 	$("#wikiplot-title").html(x_axis + ' vs. ' + y_axis);
     })
@@ -88,7 +97,7 @@ function parse_table(table) {
 	table_data[header] = [];
     });
 
-    $.each($(table).find('tr'), function(i, tr) {
+    $.each($(table).find('tbody tr'), function(i, tr) {
 	$.each($(tr).find('td'), function(j, td) {
 	    table_data[table_headers[j]].push($(td).text());
 	});
@@ -101,37 +110,6 @@ function parse_table(table) {
   } catch (err) {
     return false;
   }
-    /*
-    console.log(df.slice(0,''));
-    console.log(df.slice('',0));
-    console.log(df.slice(1,1));
-    console.log(df.col('Population'));
-
-    df.add_col('foo', [0,1,2,3,4,5,6,7,8,9]);
-    df.add_row([1,2,3,4,5,6,7]);
-    df.del_row(0);
-    df.del_col('Population');
-
-    console.log(df);
-
-    var values = ['3.14', '1,234', '1/10/11', 'May 21, 2011', '9:06 pm', '21:00', '$10.00', '€10,000', '0.2%', '5,000%'];
-
-    $.each(values, function (i, vi) {
-	var types = [];
-	$.each(['is_number', 'is_currency', 'is_percentage', 'is_datetime', 'is_date', 'is_time'], function (j, fj) {
-	    if (window[fj](vi))
-		types.push(fj);
-	});
-	console.log(vi + ': ' + types.join(', '));
-    });
-
-    console.log('column types:');
-    $.each(df.col_names, function(j, col_name) {
-	console.log('\t' + col_name + ': ' + df.col_types[j]);//col_type(df.data[col_name]));
-    });
-
-    */
-    
 }
 
 
