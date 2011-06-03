@@ -29,7 +29,7 @@ function wikiplot(df, aes, placeholder) {
     }
 
     var data = zip(x,y);
-    
+
     var series = [
 	{data: data,
 	 points: {show: true},
