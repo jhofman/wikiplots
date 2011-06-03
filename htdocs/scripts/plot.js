@@ -28,7 +28,7 @@ function wikiplot(df, aes, placeholder) {
     if (type_y == 'date')
 	options['yaxis'] = {mode: 'time', timeformat: '%y/%m/%d'};
 
-    $.plot($("#wikiplot"), series, options);
+    $.plot($(placeholder), series, options);
 }
 
 
@@ -42,7 +42,7 @@ function to_points(df, col_name) {
     else { 
 	var points = col.map(function (x, i) {	    
 	    if (type == 'date' || type == 'time' || type == 'datetime')
-		return x; //.format('u'); // fix this
+		return to_timestamp(x); //.format('u'); // fix this
 	    else
 		return i;
 	});
@@ -50,6 +50,19 @@ function to_points(df, col_name) {
 	return points;
     }
 
+}
+
+function to_timestamp(d) {
+    var year = d.toString('Y');
+    var month = d.toString('m');
+    var day = d.toString('d');
+    var hour = d.toString('H');
+    var min = d.toString('i');
+    var sec = d.toString('s');
+
+    var d2 = new Date(year, month, day, hour, min, sec, 0);
+
+    return d2.UTC();
 }
 
 function seq(n) {
