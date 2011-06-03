@@ -35,6 +35,7 @@ function select_table(table) {
 
     //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
     wikiplot(df, {x: df.col_names[1], y: df.col_names[4]}, $("#wikiplot"));
+    //wikiplot(df, {x: df.col_names[3], y: df.col_names[4]}, $("#wikiplot"));
 
 }
 
@@ -137,7 +138,7 @@ function to_number(x) {
     if (isNaN(number))
         return false;
     else
-	return number;
+	return parseFloat(number);
 }
 
 function to_currency(x) {
@@ -149,10 +150,7 @@ function to_currency(x) {
     if (signs.indexOf(sign) < 0)
 	return false;
     else
-	if (is_number(amount))
-	    return amount; //[sign, amount];
-        else
-	    return false;
+	return to_number(amount);
 }
 
 function currency_sign(x) {
@@ -167,7 +165,7 @@ function to_percentage(x) {
 	return false;
     else
 	if (is_number(x.substring(0,x.length-1)))
-	    return x.substring(0,x.length-1);
+	    return to_number(x.substring(0,x.length-1));
         else
 	    return false;
 }
