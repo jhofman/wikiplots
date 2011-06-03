@@ -27,8 +27,11 @@ function wrap_tables(tables) {
 function select_table(table) {
     var df = parse_table(table);
     console.log(df);
-
-    $(table).after('<div id="wikiplot" style="width:400px;height:300px"></div>');
+    
+    var table_id = $(table).find('table')[0].id;
+    $("#wikiplot").remove();
+    //if ($(table).next()[0].id != "wikiplot")
+    $(table).before('<div id="wikiplot" style="width:400px;height:300px"></div>');
 
     //wikiplot(df, {x: df.col_names[2], y: df.col_names[4]}, $("#wikiplot"));
     wikiplot(df, {x: df.col_names[1], y: df.col_names[4]}, $("#wikiplot"));
