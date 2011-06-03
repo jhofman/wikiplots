@@ -5,5 +5,5 @@ plot the interwebs---s/tables/plots/g
 git add <filename>
 git commit -m "*use this field*" <filename>
 git commit -am "*use this field*"
-git push origin master
+git push
 git pull

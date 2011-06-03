@@ -30,3 +30,7 @@
   -webkit-transform:rotate(-45deg);
 /*   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); */
 }
+
+.plot-url {
+	width: 150px;
+}

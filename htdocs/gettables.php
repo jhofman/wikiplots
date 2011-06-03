@@ -20,6 +20,9 @@ if ( isset($_GET['url']) ) {
 				}
 			}
 		}
+		if (isset($_GET['table_offset'])) {
+			$tables = $tables[$_GET['table_offset']];
+		}
 	}
 }
 
