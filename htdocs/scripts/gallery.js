@@ -21,39 +21,42 @@ $(document).ready(function() {
 	
 	// fetch the page and disply the tables
 		$('#panels').html('<div id="loading">loading tables</div>');
-		$.getJSON('/gettables.php', {'url': url}, function(tables){
+		$.getJSON('/gettables.php', {'url': url, 'table_offset': table_offset}, function(table){
 			$('#panels').html('');
 			var panel_id = 0;
-			$.each(tables, function(i, table){
-				// insert panel structure (console, plot, table)
-				var panel_html = "<div id=panel-" + panel_id +" class='wikiplot-panel span-24 last'>";
-				panel_html += "<div class='console span-8'>console</div>";
-				panel_html += "<div class='span-15 prepend-1 last'><div class='plot-wrapper'></div></div>";
-				panel_html += '<hr class="space" style="height:10px"">';
-				panel_html += '<input type="hidden" name="table_offset" value="' + i + '">';
-				panel_html += "<div class='table_div span-24 last'></div>";
-				panel_html += "<hr class='space' style='height:50px'></div>";
-				$('#panels').append(panel_html);
-				var panel = $('#panel-' + panel_id);
+			
+			// insert panel structure (console, plot, table)
+			var panel_html = "<div id=panel-" + panel_id +" class='wikiplot-panel span-24 last'>";
+			panel_html += "<div class='console span-8'>console</div>";
+			panel_html += "<div class='span-15 prepend-1 last'><div class='plot-wrapper'></div></div>";
+			panel_html += '<hr class="space" style="height:10px"">';
+			panel_html += '<input type="hidden" name="table_offset" value="' + table_offset + '">';
+			panel_html += "<div class='table_div span-24 last'></div>";
+			panel_html += "<hr class='space' style='height:50px'></div>";
+			$('#panels').append(panel_html);
+			var panel = $('#panel-' + panel_id);
 				
-				// insert table and validate
-				panel.find('.table_div').html(table);
-				var df = parse_table(panel.find('table'));
-				var dims = false;
-				if (df) { dims = df.size(); }
-				
-				if (df && dims[0] > 1 && dims[1] > 1 && dims[0] > dims[1]) {
-					panel_id++;
-					dfs.push(df);
-				} else {
-					panel.remove();
-					return
-				}
+			// insert table and validate
+			panel.find('.table_div').html(table);
+			var df = parse_table(panel.find('table'));
+			var dims = false;
+			if (df) { dims = df.size(); }
+			
+			if (df && dims[0] > 1 && dims[1] > 1 && dims[0] > dims[1]) {
+				panel_id++;
+				dfs.push(df);
+			} else {
+				panel.remove();
+				return
+			}
 				
 				// add console
-				add_console(df, panel.find('.console'));
-			});
+			add_console(df, panel.find('.console'));
 			
+				panel.find('input[name="geom"]').val(geom);
+				panel.find('input[name="x_axis"]').val(x_axis);
+				panel.find('input[name="y_axis"]').val(y_axis);
+						
 			// strip table styling and deactivate links
 			$.each($('table'), function(){
 				$(this).removeClass().attr('style','');
@@ -62,6 +65,7 @@ $(document).ready(function() {
 			
 			// set up plotting buttons
 			$('.plot-button').click(function(){
+				alert('click');
 				var panel = $(this).parents('.wikiplot-panel');
 				var df = dfs[panel.attr('id').split('-')[1]];
 				console.log(df);
@@ -78,6 +82,7 @@ $(document).ready(function() {
 				wikiplot(df, {x: x_axis, y: y_axis, geom: geom}, plot);
 			})
 			
+			
 			// set up plot saving
 			$('.save').click(function() {
 				var panel = $(this).parents('.wikiplot-panel');
@@ -92,5 +97,8 @@ $(document).ready(function() {
 				})
 			})
 		});
+		
+		console.log(dfs[0]);
+		wikiplot(dfs[0], {x: x_axis, y: y_axis, geom: geom}, $('.plot-wrapper'));
 	
 });

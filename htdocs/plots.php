@@ -7,8 +7,6 @@ $sth = $db->prepare('SELECT * FROM plots WHERE id = ?');
 $sth->execute(array($_GET['id']));
 $plot_info = $sth->fetch();
 
-print_r($plot_info);
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -29,7 +27,11 @@ print_r($plot_info);
 		<script src="scripts/jquery.flot.min.js"></script>
 		<script src="scripts/plot.js"></script>
 		<script>
-			var url = 'http://en.wikipedia.org/wiki/World_population';
+			var url = '<?php print $plot_info['url']; ?>';
+			var table_offset = <?php print $plot_info['table_offset']; ?>;
+			var x_axis = '<?php print $plot_info['x_axis']; ?>';
+			var y_axis = '<?php print $plot_info['y_axis']; ?>';
+			var geom = '<?php print $plot_info['geom']; ?>';
 		</script>
 		<script src="scripts/gallery.js"></script>
 	</head>
