@@ -46,6 +46,10 @@ function remote_add_console(df, div) {
 	$("#x-scale").append('<option name="' + scale + '">' + scale + '</option>');
 	$("#y-scale").append('<option name="' + scale + '">' + scale + '</option>');
     });
+
+
+    $("#x-axis option:nth(0)").attr('selected','selected');
+    $("#y-axis option:nth(1)").attr('selected','selected');
 }
 
 function select_table(table) {
