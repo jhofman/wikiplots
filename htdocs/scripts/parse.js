@@ -149,9 +149,10 @@ function col_type(col) {
 }
 
 function to_number(x) {
-    var number = x.replace(/,/g,'');
+    //var number = x.replace(/,/g,''); // remove all commas
+    var number = x.replace(/\(.*?\)/g,'').replace(/[^0-9.]/g,''); // kill any parens, then remove non numeric (or decimal)
 
-    if (isNaN(number))
+    if (isNaN(number) || number == "")
         return false;
     else
 	return parseFloat(number);

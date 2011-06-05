@@ -30,6 +30,9 @@ function wikiplot(df, aes, placeholder) {
 
     var data = zip(x,y);
 
+    if (aes['geom'] == 'line')
+	data.sort(function (a,b) {return a[0]-b[0]});
+
     var series = [
 	{data: data,
 	 points: {show: true},
@@ -160,3 +163,4 @@ function log10(v) {
 	return Math.log(vi)/Math.log(10);
     });
 }
+
